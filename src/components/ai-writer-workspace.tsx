@@ -40,7 +40,6 @@ import {
   type GeneratedContent,
 } from "../lib/ai-service";
 import { saveItem } from "../lib/storage-service";
-import { cn } from "../lib/utils";
 
 const contentTypes: ContentType[] = [
   "Blog Article",
@@ -59,12 +58,12 @@ const languages: Language[] = ["English", "Telugu", "Hindi"];
 export function AIWriterWorkspace() {
   const search = useSearch({ from: "/writer" }) as Record<string, string | undefined>;
 
-  const [topic, setTopic] = useState(search.topic || "");
-  const [contentType, setContentType] = useState<ContentType>((search.contentType as ContentType) || "Blog Article");
-  const [tone, setTone] = useState<Tone>((search.tone as Tone) || "Professional");
-  const [length, setLength] = useState<Length>((search.length as Length) || "Medium");
-  const [language, setLanguage] = useState<Language>((search.language as Language) || "English");
-  const [instructions, setInstructions] = useState(search.instructions || "");
+  const [topic, setTopic] = useState(search["topic"] || "");
+  const [contentType, setContentType] = useState<ContentType>((search["contentType"] as ContentType) || "Blog Article");
+  const [tone, setTone] = useState<Tone>((search["tone"] as Tone) || "Professional");
+  const [length, setLength] = useState<Length>((search["length"] as Length) || "Medium");
+  const [language, setLanguage] = useState<Language>((search["language"] as Language) || "English");
+  const [instructions, setInstructions] = useState(search["instructions"] || "");
 
   const [generated, setGenerated] = useState<GeneratedContent | null>(null);
   const [editedContent, setEditedContent] = useState("");
@@ -75,7 +74,7 @@ export function AIWriterWorkspace() {
   const editorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (search.topic) {
+    if (search["topic"]) {
       handleGenerate();
     }
   }, []);
