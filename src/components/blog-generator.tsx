@@ -143,7 +143,7 @@ export function BlogGenerator() {
 
   const shortenSection = (index: number) => {
     if (!blog) return;
-    const current = sectionEdits[index] || blog.sections[index].content;
+    const current = sectionEdits[index] || blog.sections[index].content || "";
     const sentences = current.split(/(?<=[.!?])\s+/).filter(Boolean);
     setSectionEdits((prev) => ({
       ...prev,
