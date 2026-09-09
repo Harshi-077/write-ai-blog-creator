@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string): Promise<boolean> => {
     await simulateDelay(800);
     if (!email.includes("@") || password.length < 4) return false;
-    persist({ id: crypto.randomUUID(), name: email.split("@")[0], email });
+    persist({ id: crypto.randomUUID(), name: email.split("@")[0] || email, email });
     return true;
   };
 

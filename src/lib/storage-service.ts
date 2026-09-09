@@ -41,9 +41,10 @@ export function updateItem(id: string, updates: Partial<Omit<SavedItem, "id" | "
   const history = getHistory();
   const index = history.findIndex((item) => item.id === id);
   if (index === -1) return null;
-  history[index] = { ...history[index], ...updates };
+  const updated: SavedItem = { ...history[index], ...updates };
+  history[index] = updated;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
-  return history[index];
+  return updated;
 }
 
 export function deleteItem(id: string): boolean {
