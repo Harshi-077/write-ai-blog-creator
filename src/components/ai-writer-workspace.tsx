@@ -160,14 +160,14 @@ export function AIWriterWorkspace() {
   const handleUndo = () => {
     if (historyIndex > 0) {
       setHistoryIndex(historyIndex - 1);
-      setEditedContent(history[historyIndex - 1]);
+      setEditedContent(history[historyIndex - 1] || "");
     }
   };
 
   const handleRedo = () => {
     if (historyIndex < history.length - 1) {
       setHistoryIndex(historyIndex + 1);
-      setEditedContent(history[historyIndex + 1]);
+      setEditedContent(history[historyIndex + 1] || "");
     }
   };
 
